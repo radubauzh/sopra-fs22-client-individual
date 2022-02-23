@@ -6,6 +6,9 @@ import {Button} from 'components/ui/Button';
 import BaseContainer from "components/ui/BaseContainer";
 import styled from 'styled-components';
 
+// MUI
+import TextField from '@mui/material/TextField';
+
 
 
 const InputField = styled.input`
@@ -124,7 +127,7 @@ class Login extends React.Component {
 
 
             <h3>Username</h3>
-            <InputField
+            <TextField
               type="text"
               placeholder="Enter here.."
               onChange={e => {
@@ -132,7 +135,7 @@ class Login extends React.Component {
               }}
               />
             <h3>Password</h3>
-            <InputField
+            <TextField
               type="text"
               placeholder="Enter here.."
               type="password"
