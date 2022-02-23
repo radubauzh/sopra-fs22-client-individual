@@ -4,6 +4,7 @@ import User from 'models/User';
 import { withRouter } from 'react-router-dom';
 import {Button} from 'components/ui/Button';
 import BaseContainer from "components/ui/BaseContainer";
+import styled from 'styled-components';
 
 
 
@@ -20,6 +21,8 @@ const InputField = styled.input`
   background: rgba(255, 255, 255, 0.2);
   color: white;
 `;
+
+
 
 
 
@@ -122,19 +125,22 @@ class Login extends React.Component {
 
             <h3>Username</h3>
             <InputField
+              type="text"
               placeholder="Enter here.."
               onChange={e => {
                 this.handleInputChange('username', e.target.value);
               }}
-            />
+              />
             <h3>Password</h3>
             <InputField
+              type="text"
               placeholder="Enter here.."
               type="password"
               onChange={e => {
                 this.handleInputChange('password', e.target.value);
               }}
-            />
+              />
+
               <Button
                 disabled={!this.state.username || !this.state.password}
                 width="50%"

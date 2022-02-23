@@ -3,9 +3,7 @@ import React from 'react';
 import { withRouter } from 'react-router-dom';
 import { api, handleError } from '../../helpers/api';
 import {Button} from 'components/ui/Button';
-
-
-
+import styled from 'styled-components';
 
 
 const InputField = styled.input`
@@ -22,10 +20,6 @@ const InputField = styled.input`
   color: white;
   text-align: center;
 `;
-
-
-
-
 
 
 class Edit extends React.Component {
