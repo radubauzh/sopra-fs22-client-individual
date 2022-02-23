@@ -1,14 +1,17 @@
-import React from 'react';
-import { api, handleError } from '../../helpers/api';
-import Player from './Player';
-import { withRouter } from 'react-router-dom';
 import { Spinner } from 'components/ui/Spinner';
+import React from 'react';
+import { withRouter } from 'react-router-dom';
+import { api, handleError } from '../../helpers/api';
+import Profile from './Profile';
 import {Button} from 'components/ui/Button';
 import BaseContainer from "components/ui/BaseContainer";
 
 
 
-class Game extends React.Component {
+
+
+class ProfilePage extends React.Component {
+
   constructor() {
     super();
     this.state = {
@@ -16,10 +19,18 @@ class Game extends React.Component {
     };
   }
 
-  //template
+  edit() {
+    this.props.history.push("/edit");
+  }
+
+  back() {
+    localStorage.removeItem('profileID'); 
+    this.props.history.push('/game');
+  }
+
   async componentDidMount() {
     try {
-      const response = await api.get('/users');
+      const response = await api.get('/users/'+localStorage.getItem("profileID"));
       // delays continuous execution of an async operation for 1 second.
       // This is just a fake async call, so that the spinner can be displayed
       // feel free to remove it :)
@@ -42,56 +53,40 @@ class Game extends React.Component {
     }
   }
 
-  async logout() {
-    try {
-      const set_user_offline = await api.put('/users/' + localStorage.getItem("id"));
-      localStorage.removeItem('token');
-      localStorage.removeItem("id");
-      this.props.history.push('/login');
-    } catch (error) {
-      alert("Somethin went wrong while logout");
-    }
-  }
 
-  openUserProfile(userId){
-    localStorage.setItem("profileID", userId); // sets local id to open the selected user profile
-    this.props.history.push("/profilePage/"+userId);
-  }
 
   render() {
     return (
       <BaseContainer>
-        <h2>Happy Coding! </h2>
-        <p>Get all users from secure end point:</p>
         {!this.state.users ? (
-          <Spinner/>
+          <Spinner />
         ) : (
-          <div>
+          <div>     
             <BaseContainer>
-              {this.state.users.map(user => {
-                return (
-                  <BaseContainer key={user.id}
-                  onClick={() => {
-                    this.openUserProfile(user.id);
-                  }}>
-                    <Player user={user} />
-                  </BaseContainer>
-                );
-              })}
+              <Profile user={this.state.users}/>
             </BaseContainer>
+            <br />
             <Button
-              width="100%"
+              width="30%"
+              disabled={localStorage.getItem("id") != this.state.users.id}
               onClick={() => {
-                this.logout();
-              }}
-            >
-              Logout
+                this.edit();
+              }}>
+              Edit
+            </Button>
+            <br /> <br />
+            <Button
+              width="30%"
+              onClick={() => {
+                this.back();
+              }}>
+              Back
             </Button>
           </div>
         )}
-      </BaseContainer>
+      </BaseContainer>  
     );
   }
 }
 
-export default withRouter(Game);
+export default withRouter(ProfilePage);

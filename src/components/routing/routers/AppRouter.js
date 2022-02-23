@@ -1,8 +1,11 @@
-import {BrowserRouter, Redirect, Route, Switch} from "react-router-dom";
-import {GameGuard} from "components/routing/routeProtectors/GameGuard";
-import GameRouter from "components/routing/routers/GameRouter";
-import {LoginGuard} from "components/routing/routeProtectors/LoginGuard";
-import Login from "components/views/Login";
+import React from "react";
+import { BrowserRouter, Redirect, Route, Switch } from "react-router-dom";
+import { LoginGuard } from "../routeProtectors/LoginGuard";
+import { GameGuard } from "../routeProtectors/GameGuard";
+import Login from "../../views/Login";
+import GameRouter from "../routers/GameRouter";
+import ProfilePage from "../../views/ProfilePage";
+import Edit from "../../views/Edit";
 
 /**
  * Main router of your application.
@@ -13,28 +16,50 @@ import Login from "components/views/Login";
  * /game renders a Router that contains other sub-routes that render in turn other react components
  * Documentation about routing in React: https://reacttraining.com/react-router/web/guides/quick-start
  */
-const AppRouter = () => {
-  return (
-    <BrowserRouter>
-      <Switch>
-        <Route path="/game">
-          <GameGuard>
-            <GameRouter base="/game"/>
-          </GameGuard>
-        </Route>
-        <Route exact path="/login">
-          <LoginGuard>
-            <Login/>
-          </LoginGuard>
-        </Route>
-        <Route exact path="/">
-          <Redirect to="/game"/>
-        </Route>
-      </Switch>
-    </BrowserRouter>
-  );
-};
-
+class AppRouter extends React.Component {
+  render() {
+    return (
+      <BrowserRouter>
+        <Switch>
+          <div>
+            <Route
+              path="/game"
+              render={() => (
+                <GameGuard>
+                  <GameRouter base={"/game"} />
+                </GameGuard>
+              )}
+            />
+            <Route
+              path="/login"
+              exact
+              render={() => (
+                <LoginGuard>
+                  <Login />
+                </LoginGuard>
+              )}
+            />
+            <Route
+              path="/profilePage/:id"
+              exact
+              render={() => (
+                  <ProfilePage />
+              )}
+            />
+            <Route
+              path="/edit"
+              exact
+              render={() => (
+                <Edit />
+              )}
+            />
+            <Route path="/" render={() => <Redirect to={"/login"} />} />
+          </div>
+        </Switch>
+      </BrowserRouter>
+    );
+  }
+}
 /*
 * Don't forget to export your component!
  */
