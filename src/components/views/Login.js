@@ -8,6 +8,9 @@ import styled from 'styled-components';
 
 // MUI
 import TextField from '@mui/material/TextField';
+import Grid from '@mui/material/Grid';
+import Box from '@mui/material/Box';
+import Stack from '@mui/material/Stack';
 
 
 
@@ -124,29 +127,43 @@ class Login extends React.Component {
   render() {
     return (
       <BaseContainer>
-
-
-            <h3>Username</h3>
+      <br></br>      <br></br>      <br></br>
+        <Stack
+          direction="row"
+          justifyContent="center"
+          alignItems="center"
+          spacing={2}
+          margin="normal"
+          >
             <TextField
+              label="username"
               type="text"
               placeholder="Enter here.."
               onChange={e => {
                 this.handleInputChange('username', e.target.value);
               }}
               />
-            <h3>Password</h3>
+
             <TextField
-              type="text"
+              label="password"
               placeholder="Enter here.."
               type="password"
               onChange={e => {
                 this.handleInputChange('password', e.target.value);
               }}
               />
+              </Stack>
+              <br></br>
 
+              <Stack
+              direction="row"
+              justifyContent="center"
+              alignItems="center"
+              spacing={2}
+          >
               <Button
                 disabled={!this.state.username || !this.state.password}
-                width="50%"
+                width="17%"
                 onClick={() => {
                   this.login();
                 }}
@@ -156,14 +173,14 @@ class Login extends React.Component {
 
               <Button
                 disabled={!this.state.username || !this.state.password}
-                width="50%"
+                width="17%"
                 onClick={() => {
                   this.register();
                 }}
               >
                 Register
               </Button>
-
+              </Stack>
       </BaseContainer>
     );
   }
@@ -174,3 +191,4 @@ class Login extends React.Component {
  * withRouter will pass updated match, location, and history props to the wrapped component whenever it renders.
  */
 export default withRouter(Login);
+
