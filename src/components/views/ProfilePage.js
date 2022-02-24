@@ -7,9 +7,6 @@ import {Button} from 'components/ui/Button';
 import BaseContainer from "components/ui/BaseContainer";
 
 
-
-
-
 class ProfilePage extends React.Component {
 
   constructor() {

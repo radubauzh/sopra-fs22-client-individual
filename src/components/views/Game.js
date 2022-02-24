@@ -4,7 +4,7 @@ import Player from './Player';
 import { withRouter } from 'react-router-dom';
 import { Spinner } from 'components/ui/Spinner';
 import {Button} from 'components/ui/Button';
-//import {GlassBox} from 'components/ui/GlassBox';
+import GlasBox from 'components/ui/GlasBox';
 
 import BaseContainer from "components/ui/BaseContainer";
 
@@ -14,11 +14,9 @@ import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
 
 const ViewProfile = styled(Paper)(({ theme }) => ({
-  backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#834585',
-  ...theme.typography.body2,
+  backgroundColor: 'transparent',
   padding: theme.spacing(1),
   textAlign: 'center',
-  border: '1px solid',
   color: theme.palette.text.secondary,
   '&:hover': {
     background: "rgb(7, 177, 77, 0.42)",       
@@ -26,8 +24,7 @@ const ViewProfile = styled(Paper)(({ theme }) => ({
 }));
 
 const Item = styled(Paper)(({ theme }) => ({
-  backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#858585',
-  ...theme.typography.body2,
+  backgroundColor: 'transparent',
   padding: theme.spacing(1),
   textAlign: 'center',
   color: theme.palette.text.secondary,
@@ -90,9 +87,8 @@ class Game extends React.Component {
 
   render() {
     return (
-      <BaseContainer>
         <Item>
-          <h2>Happy Coding! </h2>
+          <h2> Happy Coding! </h2>
           <p>Get all users from secure end point:</p>
           {!this.state.users ? (
             <Spinner />
@@ -101,7 +97,8 @@ class Game extends React.Component {
               <BaseContainer>
                 {this.state.users.map((user) => {
                   return (
-                    <Item>
+
+                    <GlasBox>
                       <ViewProfile
                         key={user.id}
                         onClick={() => {
@@ -110,7 +107,7 @@ class Game extends React.Component {
                       >
                         <Player user={user} />
                       </ViewProfile>
-                    </Item>
+                    </GlasBox>
                   );
                 })}
               </BaseContainer>
@@ -125,7 +122,6 @@ class Game extends React.Component {
             </div>
           )}
         </Item>
-      </BaseContainer>
     );
   }
 }
