@@ -4,7 +4,7 @@ import Player from './Player';
 import { withRouter } from 'react-router-dom';
 import { Spinner } from 'components/ui/Spinner';
 import {Button} from 'components/ui/Button';
-import {GlassBox} from 'components/ui/GlassBox';
+//import {GlassBox} from 'components/ui/GlassBox';
 
 import BaseContainer from "components/ui/BaseContainer";
 
