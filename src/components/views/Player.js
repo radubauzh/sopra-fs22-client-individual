@@ -1,9 +1,28 @@
 import React from "react";
 import BaseContainer from "components/ui/BaseContainer";
+import style from 'styled-components';
+
+// MUI
+import { styled } from '@mui/material/styles';
+import Grid from '@mui/material/Grid';
+import Paper from '@mui/material/Paper';
+import Box from '@mui/material/Box';
+import Container from '@mui/material/Container';
 
 
-/**
-const Online = styled.span`
+
+const Item = styled(Paper)(({ theme }) => ({
+  backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
+  ...theme.typography.body2,
+  padding: theme.spacing(1),
+  textAlign: 'center',
+  color: theme.palette.text.secondary,
+}));
+
+
+
+
+const Online = style.span`
   color: #4caf50;
   &::after {
     content: "✔";
@@ -11,14 +30,14 @@ const Online = styled.span`
   padding-right: 6px;
 `;
 
-const Offline = styled.span`
+const Offline = style.span`
   color: #f44336;
   &::after {
     content: "✘";
   }
   padding-right: 6px;
 `;
-*/
+
 
 /**
  * This is an example of a Functional and stateless component (View) in React. Functional components are not classes and thus don't handle internal state changes.
@@ -28,18 +47,26 @@ const Offline = styled.span`
  * https://reactjs.org/docs/components-and-props.html
  * @FunctionalComponent
  */
-const Player = ({ user }) => {
-  return (
-    <BaseContainer>
-        {user.status === 'ONLINE'?
-          <h3/>
-          :
-          <h2/>
-        }
-      <h3>{user.username}</h3>
-      <h3>Id: {user.id}</h3>
-    </BaseContainer>
-  );
-};
+ const Player = ({ user }) => {
+   return (
+     <Box sx={{ flexGrow: 1 }}>
+       <Grid container spacing={3}>
+         <Grid item xs margin={1}>
+           <Item>{user.username} </Item>
+         </Grid>
+         <Grid item xs margin={1}>
+           <Item>Id: {user.id}</Item>
+         </Grid>
+         <Grid item xs margin={1}>
+           <Item>
+             Status: {user.status === "ONLINE" ? <Online /> : <Offline />}
+           </Item>
+         </Grid>
+       </Grid>
+     </Box>
+   );
+ };
 
-export default Player;
+ export default Player;
+
+

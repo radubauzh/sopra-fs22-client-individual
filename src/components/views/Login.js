@@ -52,7 +52,7 @@ class Login extends React.Component {
     super();
     this.state = {
       password: null,
-      username: null
+      username: null,
     };
   }
   /**
@@ -64,22 +64,24 @@ class Login extends React.Component {
     try {
       const requestBody = JSON.stringify({
         username: this.state.username,
-        password: this.state.password
+        password: this.state.password,
       });
-      const response = await api.post('/users', requestBody);
+      const response = await api.post("/users", requestBody);
 
       // Get the returned user and update a new object.
       const user = new User(response.data);
 
       // Store the token into the local storage.
-      localStorage.setItem('token', user.token);
+      localStorage.setItem("token", user.token);
       localStorage.setItem("id", user.id);
-      const set_user_online = await api.put('/users/'+user.id);
+      const set_user_online = await api.put("/users/" + user.id);
 
       // Login successfully worked --> navigate to the route /game in the GameRouter
       this.props.history.push(`/game`);
     } catch (error) {
-      alert(`Something went wrong during the register: \n${handleError(error)}`);
+      alert(
+        `Something went wrong during the register: \n${handleError(error)}`
+      );
     }
   }
 
@@ -87,20 +89,28 @@ class Login extends React.Component {
     try {
       const requestBody = JSON.stringify({
         username: this.state.username,
-        password: this.state.password
+        password: this.state.password,
       });
-      const response = await api.put("/users_name/" + this.state.username, requestBody)
+      const response = await api.put(
+        "/users_name/" + this.state.username,
+        requestBody
+      );
 
-        // Store the token into the local storage.
-        localStorage.setItem('token', response.data.token);
-        localStorage.setItem("id", response.data.id);
-        const set_user_online = await api.put('/users/'+localStorage.getItem("id"));
+      // Store the token into the local storage.
+      localStorage.setItem("token", response.data.token);
+      localStorage.setItem("id", response.data.id);
+      const set_user_online = await api.put(
+        "/users/" + localStorage.getItem("id")
+      );
 
-        // Login successfully worked --> navigate to the route /game in the GameRouter
-        this.props.history.push(`/game`);
-
+      // Login successfully worked --> navigate to the route /game in the GameRouter
+      this.props.history.push(`/game`);
     } catch (error) {
-      alert(`Are you registered yet? Please register yourself first :-) \n${handleError(error)}`);
+      alert(
+        `Are you registered yet? Please register yourself first :-) \n${handleError(
+          error
+        )}`
+      );
     }
   }
 
@@ -127,60 +137,59 @@ class Login extends React.Component {
   render() {
     return (
       <BaseContainer>
-      <br></br>      <br></br>      <br></br>
+        <br></br> <br></br> <br></br>
         <Stack
           direction="row"
           justifyContent="center"
           alignItems="center"
           spacing={2}
           margin="normal"
+        >
+          <TextField
+            label="username"
+            type="text"
+            placeholder="Enter here.."
+            onChange={(e) => {
+              this.handleInputChange("username", e.target.value);
+            }}
+          />
+
+          <TextField
+            label="password"
+            placeholder="Enter here.."
+            type="password"
+            onChange={(e) => {
+              this.handleInputChange("password", e.target.value);
+            }}
+          />
+        </Stack>
+        <br></br>
+        <Stack
+          direction="row"
+          justifyContent="center"
+          alignItems="center"
+          spacing={2}
+        >
+          <Button
+            disabled={!this.state.username || !this.state.password}
+            width="17%"
+            onClick={() => {
+              this.login();
+            }}
           >
-            <TextField
-              label="username"
-              type="text"
-              placeholder="Enter here.."
-              onChange={e => {
-                this.handleInputChange('username', e.target.value);
-              }}
-              />
+            Login
+          </Button>
 
-            <TextField
-              label="password"
-              placeholder="Enter here.."
-              type="password"
-              onChange={e => {
-                this.handleInputChange('password', e.target.value);
-              }}
-              />
-              </Stack>
-              <br></br>
-
-              <Stack
-              direction="row"
-              justifyContent="center"
-              alignItems="center"
-              spacing={2}
+          <Button
+            disabled={!this.state.username || !this.state.password}
+            width="17%"
+            onClick={() => {
+              this.register();
+            }}
           >
-              <Button
-                disabled={!this.state.username || !this.state.password}
-                width="17%"
-                onClick={() => {
-                  this.login();
-                }}
-              >
-                Login
-              </Button>
-
-              <Button
-                disabled={!this.state.username || !this.state.password}
-                width="17%"
-                onClick={() => {
-                  this.register();
-                }}
-              >
-                Register
-              </Button>
-              </Stack>
+            Register
+          </Button>
+        </Stack>
       </BaseContainer>
     );
   }

@@ -1,7 +1,39 @@
 import React from "react";
 import BaseContainer from "components/ui/BaseContainer";
+import style from 'styled-components';
+
+// MUI
+import { styled } from '@mui/material/styles';
+import Grid from '@mui/material/Grid';
+import Paper from '@mui/material/Paper';
+import Box from '@mui/material/Box';
+import Stack from '@mui/material/Stack';
+import Container from '@mui/material/Container';
 
 
+const Item = styled(Paper)(({ theme }) => ({
+  backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
+  ...theme.typography.body2,
+  padding: theme.spacing(1),
+  textAlign: 'center',
+  color: theme.palette.text.secondary,
+}));
+
+const Online = style.span`
+  color: #4caf50;
+  &::after {
+    content: "✔";
+  }
+  padding-right: 6px;
+`;
+
+const Offline = style.span`
+  color: #f44336;
+  &::after {
+    content: "✘";
+  }
+  padding-right: 6px;
+`;
 
 /**
  * This is an example of a Functional and stateless component (View) in React. Functional components are not classes and thus don't handle internal state changes.
@@ -14,32 +46,21 @@ import BaseContainer from "components/ui/BaseContainer";
 const Profile = ({ user }) => {
   return (
     <>
-        <BaseContainer>
-            <h3>Username:</h3>
-            <h3>{user.username}</h3>
-        </BaseContainer>
-
-        <BaseContainer>
-            <h3>Birthday:</h3>
-            <h3>{user.birthday}</h3> 
-        </BaseContainer>
-
-        <BaseContainer>
-            <h3>Status:</h3>
-            <h3>{user.status}</h3>
-            {user.status === 'ONLINE'?
-            <h3/>
-            :
-            <h3/>
-        }
-        </BaseContainer>
-        <BaseContainer>
-            <h3>Creation Date:</h3>
-            <h3>{user.creationDate}</h3>
-        </BaseContainer>
-
+      <Item>
+        <Box sx={{ flexGrow: 1 }}>
+          <Stack spacing={2}>
+            <Item>Username: {user.username}</Item>
+            <Item>Id: {user.id}</Item>
+            <Item>
+              Status: {user.status === "ONLINE" ? <Online /> : <Offline />}
+            </Item>
+            <Item>Creation Date: {user.creationDate}</Item>
+          </Stack>
+        </Box>
+      </Item>
     </>
   );
 };
 
 export default Profile;
+
