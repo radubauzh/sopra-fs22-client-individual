@@ -12,11 +12,10 @@ import Container from '@mui/material/Container';
 
 
 const Item = styled(Paper)(({ theme }) => ({
-  backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
-  ...theme.typography.body2,
+  backgroundColor: "transparent",
   padding: theme.spacing(1),
   textAlign: 'center',
-  color: theme.palette.text.secondary,
+  color: "white"
 }));
 
 const Online = style.span`
@@ -46,8 +45,8 @@ const Offline = style.span`
 const Profile = ({ user }) => {
   return (
     <>
-      <Item>
-        <Box sx={{ flexGrow: 1 }}>
+      <Item  sx = {{boxShadow: 0}}>
+        <Box sx={{ flexGrow: 1}}>
           <Stack spacing={2}>
             <Item>Username: {user.username}</Item>
             <Item>Id: {user.id}</Item>

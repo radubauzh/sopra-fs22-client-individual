@@ -15,6 +15,7 @@ const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: "transparent",
   padding: theme.spacing(1),
   textAlign: 'center',
+  color: "white",
 }));
 
 
@@ -47,16 +48,16 @@ const Offline = style.span`
  */
  const Player = ({ user }) => {
    return (
-     <Box sx={{ flexGrow: 1 }}>
+     <Box sx={{ flexGrow: 1}}>
        <Grid container spacing={3}>
          <Grid item xs margin={1}>
-           <Item>{user.username} </Item>
+           <Item sx = {{boxShadow: 0}}>{user.username} </Item>
          </Grid>
          <Grid item xs margin={1}>
-           <Item>Id: {user.id}</Item>
+           <Item sx = {{boxShadow: 0}}>Id: {user.id}</Item>
          </Grid>
          <Grid item xs margin={1}>
-           <Item>
+           <Item sx = {{boxShadow: 0}}>
              Status: {user.status === "ONLINE" ? <Online /> : <Offline />}
            </Item>
          </Grid>

@@ -14,20 +14,21 @@ import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
 
 const ViewProfile = styled(Paper)(({ theme }) => ({
-  backgroundColor: 'transparent',
+  backgroundColor: "transparent",
   padding: theme.spacing(1),
   textAlign: 'center',
-  color: theme.palette.text.secondary,
+  color: "white",
   '&:hover': {
     background: "rgb(7, 177, 77, 0.42)",       
     }
 }));
 
 const Item = styled(Paper)(({ theme }) => ({
-  backgroundColor: 'transparent',
+  backgroundColor: "transparent",
   padding: theme.spacing(1),
   textAlign: 'center',
-  color: theme.palette.text.secondary,
+  color: "white"
+
 }));
 
 
@@ -87,19 +88,19 @@ class Game extends React.Component {
 
   render() {
     return (
-        <Item>
+        <Item  sx = {{boxShadow: 0}}>
           <h2> Happy Coding! </h2>
           <p>Get all users from secure end point:</p>
           {!this.state.users ? (
             <Spinner />
           ) : (
             <div>
-              <BaseContainer>
+              <BaseContainer >
                 {this.state.users.map((user) => {
                   return (
 
                     <GlasBox>
-                      <ViewProfile
+                      <ViewProfile 
                         key={user.id}
                         onClick={() => {
                           this.openUserProfile(user.id);
@@ -111,6 +112,7 @@ class Game extends React.Component {
                   );
                 })}
               </BaseContainer>
+              <br></br>
               <Button
                 width="10%"
                 onClick={() => {
