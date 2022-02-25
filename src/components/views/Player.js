@@ -1,25 +1,19 @@
 import React from "react";
 import BaseContainer from "components/ui/BaseContainer";
-import style from 'styled-components';
+import style from "styled-components";
 
 // MUI
-import { styled } from '@mui/material/styles';
-import Grid from '@mui/material/Grid';
-import Paper from '@mui/material/Paper';
-import Box from '@mui/material/Box';
-import Container from '@mui/material/Container';
-
-
+import { styled } from "@mui/material/styles";
+import Grid from "@mui/material/Grid";
+import Paper from "@mui/material/Paper";
+import Box from "@mui/material/Box";
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: "transparent",
   padding: theme.spacing(1),
-  textAlign: 'center',
+  textAlign: "center",
   color: "white",
 }));
-
-
-
 
 const Online = style.span`
   color: #4caf50;
@@ -37,7 +31,6 @@ const Offline = style.span`
   padding-right: 6px;
 `;
 
-
 /**
  * This is an example of a Functional and stateless component (View) in React. Functional components are not classes and thus don't handle internal state changes.
  * Conceptually, components are like JavaScript functions. They accept arbitrary inputs (called “props”) and return React elements describing what should appear on the screen.
@@ -46,26 +39,24 @@ const Offline = style.span`
  * https://reactjs.org/docs/components-and-props.html
  * @FunctionalComponent
  */
- const Player = ({ user }) => {
-   return (
-     <Box sx={{ flexGrow: 1}}>
-       <Grid container spacing={3}>
-         <Grid item xs margin={1}>
-           <Item sx = {{boxShadow: 0}}>{user.username} </Item>
-         </Grid>
-         <Grid item xs margin={1}>
-           <Item sx = {{boxShadow: 0}}>Id: {user.id}</Item>
-         </Grid>
-         <Grid item xs margin={1}>
-           <Item sx = {{boxShadow: 0}}>
-             Status: {user.status === "ONLINE" ? <Online /> : <Offline />}
-           </Item>
-         </Grid>
-       </Grid>
-     </Box>
-   );
- };
+const Player = ({ user }) => {
+  return (
+    <Box sx={{ flexGrow: 1 }}>
+      <Grid container spacing={3}>
+        <Grid item xs margin={1}>
+          <Item sx={{ boxShadow: 0 }}>{user.username} </Item>
+        </Grid>
+        <Grid item xs margin={1}>
+          <Item sx={{ boxShadow: 0 }}>Id: {user.id}</Item>
+        </Grid>
+        <Grid item xs margin={1}>
+          <Item sx={{ boxShadow: 0 }}>
+            Status: {user.status === "ONLINE" ? <Online /> : <Offline />}
+          </Item>
+        </Grid>
+      </Grid>
+    </Box>
+  );
+};
 
- export default Player;
-
-
+export default Player;

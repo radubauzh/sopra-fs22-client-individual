@@ -1,34 +1,43 @@
-import BaseContainer from 'components/ui/BaseContainer';
-import React from 'react';
-import { withRouter } from 'react-router-dom';
-import { api, handleError } from '../../helpers/api';
-import {Button} from 'components/ui/Button';
-import styled from 'styled-components';
+import BaseContainer from "components/ui/BaseContainer";
+import React from "react";
+import { withRouter } from "react-router-dom";
+import { api, handleError } from "../../helpers/api";
+import { Button } from "components/ui/Button";
+import styled from "styled-components";
 
+// MUI
+import Paper from "@mui/material/Paper";
+import GlasBox from "components/ui/GlasBox";
+
+const Item = styled(Paper)(({ theme }) => ({
+  backgroundColor: "transparent",
+  padding: theme.spacing(1),
+  textAlign: "center",
+  color: "white",
+}));
 
 const InputField = styled.input`
   &::placeholder {
-    color: rgba(255, 255, 255, 1.0);
+    color: rgba(255, 255, 255, 1);
   }
   height: 35px;
   padding-left: 15px;
   margin-left: -4px;
   border: none;
-  border-radius: 20px;
+  border-radius: 10px;
   margin-bottom: 20px;
   background: rgba(255, 255, 255, 0.2);
   color: white;
   text-align: center;
+  margin-right: 1%;
 `;
 
-
 class Edit extends React.Component {
-
   constructor() {
     super();
     this.state = {
       username: null,
-      birthday: null
+      birthday: null,
     };
   }
 
@@ -38,34 +47,39 @@ class Edit extends React.Component {
     this.setState({ [key]: value });
   }
 
-// Server: UserService - updateBirthday(id, birthday)
-//@PutMapping("/users/{id}/username")
+  // Server: UserService - updateBirthday(id, birthday)
+  //@PutMapping("/users/{id}/username")
   async changeBirthday() {
     try {
-      const response = await api.put("/users/"+localStorage.getItem("id")+"/birthday", this.state.birthday)
-      alert("Success")
-      this.props.history.push('/profilePage/'+localStorage.getItem("id"));
+      const response = await api.put(
+        "/users/" + localStorage.getItem("id") + "/birthday",
+        this.state.birthday
+      );
+      alert("Success");
+      this.props.history.push("/profilePage/" + localStorage.getItem("id"));
     } catch (error) {
       alert(`Something went wrong: \n${handleError(error)}`);
     }
   }
 
-// Server: UserService - updateUsername(id, username)
-//@PutMapping("/users/{id}/username")
-async changeUsername() {
-  try {
-    const response = await api.put("/users/"+localStorage.getItem("id")+"/username", this.state.username)
-    alert("Success")
-    this.props.history.push('/profilePage/'+localStorage.getItem("id"));
-
-  } catch (error) {
-    alert(`Something went wrong: \n${handleError(error)}`);
+  // Server: UserService - updateUsername(id, username)
+  //@PutMapping("/users/{id}/username")
+  async changeUsername() {
+    try {
+      const response = await api.put(
+        "/users/" + localStorage.getItem("id") + "/username",
+        this.state.username
+      );
+      alert("Success");
+      this.props.history.push("/profilePage/" + localStorage.getItem("id"));
+    } catch (error) {
+      alert(`Something went wrong: \n${handleError(error)}`);
+    }
   }
-}
 
   // redirect to your profile page
   back() {
-    this.props.history.push('/profilePage/'+localStorage.getItem("id"));
+    this.props.history.push("/profilePage/" + localStorage.getItem("id"));
   }
 
   /**
@@ -79,57 +93,59 @@ async changeUsername() {
     this.setState({ [key]: value });
   }
 
+  render() {
+    return (
+      <BaseContainer>
+        <GlasBox>
+          <h3>Birthday:</h3>
+          <br /> <br />
+          <InputField
+            placeholder="DD-MM-YYYY"
+            onChange={(e) => {
+              this.handleInputChange("birthday", e.target.value);
+            }}
+          />
+          <Button
+            width="20%"
+            disabled={!this.state.birthday}
+            onClick={() => {
+              this.changeBirthday();
+            }}
+          >
+            Change birthday
+          </Button>
+          <br /> <br />
+          <h3>Username:</h3>
+          <br /> <br />
+          <InputField
+            placeholder="Change username"
+            onChange={(e) => {
+              this.handleInputChange("username", e.target.value);
+            }}
+          />
+          <Button
+            width="20%"
+            disabled={!this.state.username}
+            onClick={() => {
+              this.changeUsername();
+            }}
+          >
+            Change username
+          </Button>
+          <br /> <br /> <br />
+          <Button
+            width="15%"
+            onClick={() => {
+              this.back();
+            }}
+          >
+            Back
+          </Button>
+          <br /> <br /> <br />
+        </GlasBox>
+      </BaseContainer>
+    );
+  }
+}
 
-    render() {
-        return (
-          <BaseContainer>
-            <h3>Birthday:</h3> 
-            <br /> <br /> 
-            <InputField
-              placeholder="DD-MM-YYYY"
-              onChange={e => {
-                this.handleInputChange('birthday', e.target.value);
-              }}
-            />
-
-            <Button
-              width="20%"
-              disabled={!this.state.birthday}
-              onClick={() => {
-                this.changeBirthday();
-              }}>
-              Change birthday
-            </Button>
-            <br /> <br /> 
-            <h3>Username:</h3> 
-            <br /> <br /> 
-            <InputField
-              placeholder="Change username" 
-              onChange={e => {
-                this.handleInputChange('username', e.target.value);
-
-              }}
-            />
-            <Button
-              width="25%"
-              disabled={!this.state.username}
-              onClick={() => {
-                this.changeUsername();
-              }}>
-              Change username
-            </Button>
-            <br /> <br /> <br /> 
-            <Button
-              width="50%"
-              onClick={() => {
-                this.back();
-              }}>
-              Back
-            </Button>
-          </BaseContainer>
-        );
-      }
-    }
-
-    export default withRouter(Edit);
-    
+export default withRouter(Edit);

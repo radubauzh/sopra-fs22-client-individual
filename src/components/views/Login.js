@@ -1,22 +1,18 @@
-import React from 'react';
-import { api, handleError } from '../../helpers/api';
-import User from 'models/User';
-import { withRouter } from 'react-router-dom';
-import {Button} from 'components/ui/Button';
+import React from "react";
+import { api, handleError } from "../../helpers/api";
+import User from "models/User";
+import { withRouter } from "react-router-dom";
+import { Button } from "components/ui/Button";
 import BaseContainer from "components/ui/BaseContainer";
-import styled from 'styled-components';
+import styled from "styled-components";
 
 // MUI
-import TextField from '@mui/material/TextField';
-import Grid from '@mui/material/Grid';
-import Box from '@mui/material/Box';
-import Stack from '@mui/material/Stack';
-
-
+import TextField from "@mui/material/TextField";
+import Stack from "@mui/material/Stack";
 
 const InputField = styled.input`
   &::placeholder {
-    color: rgba(255, 255, 255, 1.0);
+    color: rgba(255, 255, 255, 1);
   }
   height: 35px;
   padding-left: 15px;
@@ -27,10 +23,6 @@ const InputField = styled.input`
   background: rgba(255, 255, 255, 0.2);
   color: white;
 `;
-
-
-
-
 
 /**
  * Classes in React allow you to have an internal state within the class and to have the React life-cycle for your component.
@@ -200,4 +192,3 @@ class Login extends React.Component {
  * withRouter will pass updated match, location, and history props to the wrapped component whenever it renders.
  */
 export default withRouter(Login);
-

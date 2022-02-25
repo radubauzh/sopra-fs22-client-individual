@@ -1,21 +1,19 @@
 import React from "react";
 import BaseContainer from "components/ui/BaseContainer";
-import style from 'styled-components';
+import style from "styled-components";
 
 // MUI
-import { styled } from '@mui/material/styles';
-import Grid from '@mui/material/Grid';
-import Paper from '@mui/material/Paper';
-import Box from '@mui/material/Box';
-import Stack from '@mui/material/Stack';
-import Container from '@mui/material/Container';
-
+import { styled } from "@mui/material/styles";
+import Paper from "@mui/material/Paper";
+import Box from "@mui/material/Box";
+import Stack from "@mui/material/Stack";
+import GlasBox from "components/ui/GlasBox";
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: "transparent",
   padding: theme.spacing(1),
-  textAlign: 'center',
-  color: "white"
+  textAlign: "center",
+  color: "white",
 }));
 
 const Online = style.span`
@@ -45,15 +43,23 @@ const Offline = style.span`
 const Profile = ({ user }) => {
   return (
     <>
-      <Item  sx = {{boxShadow: 0}}>
-        <Box sx={{ flexGrow: 1}}>
+      <Item sx={{ boxShadow: 0 }}>
+        <Box sx={{ flexGrow: 1 }}>
           <Stack spacing={2}>
-            <Item>Username: {user.username}</Item>
-            <Item>Id: {user.id}</Item>
-            <Item>
-              Status: {user.status === "ONLINE" ? <Online /> : <Offline />}
-            </Item>
-            <Item>Creation Date: {user.creationDate}</Item>
+            <GlasBox>
+              <Item>Username: {user.username}</Item>
+            </GlasBox>
+            <GlasBox>
+              <Item>Id: {user.id}</Item>
+            </GlasBox>
+            <GlasBox>
+              <Item>
+                Status: {user.status === "ONLINE" ? <Online /> : <Offline />}
+              </Item>
+            </GlasBox>
+            <GlasBox>
+              <Item>Creation Date: {user.creationDate}</Item>
+            </GlasBox>
           </Stack>
         </Box>
       </Item>
@@ -62,4 +68,3 @@ const Profile = ({ user }) => {
 };
 
 export default Profile;
-

@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@100;300;400;500;700;800;900&family=Roboto+Mono:wght@300;400;500;700&display=swap');
 @import 'styles/theme';
 
+
 /**
 This file contains the general and shared style of your application.
  */
@@ -10,7 +11,24 @@ body {
   min-width: 100vw;
   min-height: 100vh;
   font-family: $fontDefault;
-  background-image: linear-gradient(135deg, $accent 10%, $accentDark 100%);
+  //background: rgb(0,75,122);
+  //background-image: linear-gradient(174deg, rgba(0,75,122,1) 0%, rgba(3,25,47,1) 100%, rgba(247,250,252,1) 100%);
+  background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+	background-size: 400% 400%;
+	animation: gradient 10s ease infinite;
+	height: 100vh;
+
+}
+@keyframes gradient {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
 }
 
 input,

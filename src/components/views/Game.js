@@ -1,36 +1,33 @@
-import React from 'react';
-import { api, handleError } from '../../helpers/api';
-import Player from './Player';
-import { withRouter } from 'react-router-dom';
-import { Spinner } from 'components/ui/Spinner';
-import {Button} from 'components/ui/Button';
-import GlasBox from 'components/ui/GlasBox';
+import React from "react";
+import { api, handleError } from "../../helpers/api";
+import Player from "./Player";
+import { withRouter } from "react-router-dom";
+import { Spinner } from "components/ui/Spinner";
+import { Button } from "components/ui/Button";
+import GlasBox from "components/ui/GlasBox";
 
 import BaseContainer from "components/ui/BaseContainer";
 
 // MUI
-import { styled } from '@mui/material/styles';
-import Grid from '@mui/material/Grid';
-import Paper from '@mui/material/Paper';
+import { styled } from "@mui/material/styles";
+import Paper from "@mui/material/Paper";
 
 const ViewProfile = styled(Paper)(({ theme }) => ({
   backgroundColor: "transparent",
   padding: theme.spacing(1),
-  textAlign: 'center',
+  textAlign: "center",
   color: "white",
-  '&:hover': {
-    background: "rgb(7, 177, 77, 0.42)",       
-    }
+  "&:hover": {
+    background: "rgba( 255, 255, 255, 0.3 )",
+  },
 }));
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: "transparent",
   padding: theme.spacing(1),
-  textAlign: 'center',
-  color: "white"
-
+  textAlign: "center",
+  color: "white",
 }));
-
 
 class Game extends React.Component {
   constructor() {
@@ -88,42 +85,41 @@ class Game extends React.Component {
 
   render() {
     return (
-        <Item  sx = {{boxShadow: 0}}>
-          <h2> Happy Coding! </h2>
-          <p>Get all users from secure end point:</p>
-          {!this.state.users ? (
-            <Spinner />
-          ) : (
-            <div>
-              <BaseContainer >
-                {this.state.users.map((user) => {
-                  return (
-
-                    <GlasBox>
-                      <ViewProfile 
-                        key={user.id}
-                        onClick={() => {
-                          this.openUserProfile(user.id);
-                        }}
-                      >
-                        <Player user={user} />
-                      </ViewProfile>
-                    </GlasBox>
-                  );
-                })}
-              </BaseContainer>
-              <br></br>
-              <Button
-                width="10%"
-                onClick={() => {
-                  this.logout();
-                }}
-              >
-                Logout
-              </Button>
-            </div>
-          )}
-        </Item>
+      <Item sx={{ boxShadow: 0 }}>
+        <h2> Happy Coding! </h2>
+        <p>Get all users from secure end point:</p>
+        {!this.state.users ? (
+          <Spinner />
+        ) : (
+          <div>
+            <BaseContainer>
+              {this.state.users.map((user) => {
+                return (
+                  <GlasBox>
+                    <ViewProfile
+                      key={user.id}
+                      onClick={() => {
+                        this.openUserProfile(user.id);
+                      }}
+                    >
+                      <Player user={user} />
+                    </ViewProfile>
+                  </GlasBox>
+                );
+              })}
+            </BaseContainer>
+            <br></br>
+            <Button
+              width="10%"
+              onClick={() => {
+                this.logout();
+              }}
+            >
+              Logout
+            </Button>
+          </div>
+        )}
+      </Item>
     );
   }
 }
