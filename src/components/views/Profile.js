@@ -60,6 +60,9 @@ const Profile = ({ user }) => {
             <GlasBox>
               <Item>Creation Date: {user.creationDate}</Item>
             </GlasBox>
+            <GlasBox>
+              <Item>Birthday: {user.birthday}</Item>
+            </GlasBox>
           </Stack>
         </Box>
       </Item>
