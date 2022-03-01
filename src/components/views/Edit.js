@@ -4,17 +4,8 @@ import { withRouter } from "react-router-dom";
 import { api, handleError } from "../../helpers/api";
 import { Button } from "components/ui/Button";
 import styled from "styled-components";
-
-// MUI
-import Paper from "@mui/material/Paper";
 import GlasBox from "components/ui/GlasBox";
 
-const Item = styled(Paper)(({ theme }) => ({
-  backgroundColor: "transparent",
-  padding: theme.spacing(1),
-  textAlign: "center",
-  color: "white",
-}));
 
 const InputField = styled.input`
   &::placeholder {
@@ -98,10 +89,9 @@ class Edit extends React.Component {
       <BaseContainer>
         <GlasBox>
           <h3>Birthday:</h3>
-          <br /> <br />
+          <br /> 
           <InputField
             type="Date"
-            placeholder="DD-MM-YYYY"
             onChange={(e) => {
               this.handleInputChange("birthday", e.target.value);
             }}
@@ -117,7 +107,7 @@ class Edit extends React.Component {
           </Button>
           <br /> <br />
           <h3>Username:</h3>
-          <br /> <br />
+          <br /> 
           <InputField
             placeholder="Change username"
             onChange={(e) => {
