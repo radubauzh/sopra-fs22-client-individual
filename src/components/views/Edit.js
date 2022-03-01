@@ -100,6 +100,7 @@ class Edit extends React.Component {
           <h3>Birthday:</h3>
           <br /> <br />
           <InputField
+            type="Date"
             placeholder="DD-MM-YYYY"
             onChange={(e) => {
               this.handleInputChange("birthday", e.target.value);
