@@ -74,7 +74,7 @@ class Game extends React.Component {
       localStorage.removeItem("id");
       this.props.history.push("/login");
     } catch (error) {
-      alert("Somethin went wrong while logout");
+      alert("Something went wrong while logout");
     }
   }
 
