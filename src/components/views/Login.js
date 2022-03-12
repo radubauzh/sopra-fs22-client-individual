@@ -10,6 +10,7 @@ import styled from "styled-components";
 import TextField from "@mui/material/TextField";
 import Stack from "@mui/material/Stack";
 
+
 const InputField = styled.input`
   &::placeholder {
     color: rgba(255, 255, 255, 1);
@@ -64,7 +65,8 @@ class Login extends React.Component {
       const user = new User(response.data);
 
       // Store the token into the local storage.
-      localStorage.setItem("token", user.token);
+      //localStorage.setItem("token", user.token);
+      localStorage.setItem("is_logged_in", "True");
       localStorage.setItem("id", user.id);
       const set_user_online = await api.put("/users/" + user.id);
 
@@ -89,7 +91,9 @@ class Login extends React.Component {
       );
 
       // Store the token into the local storage.
-      localStorage.setItem("token", response.data.token);
+      //localStorage.setItem("token", "I'm in the DB ;)");
+      //localStorage.setItem("token", response.data.token);
+      localStorage.setItem("is_logged_in", "True");
       localStorage.setItem("id", response.data.id);
       const set_user_online = await api.put(
         "/users/" + localStorage.getItem("id")

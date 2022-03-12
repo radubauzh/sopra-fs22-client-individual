@@ -70,8 +70,10 @@ class Game extends React.Component {
       const set_user_offline = await api.put(
         "/users/" + localStorage.getItem("id")
       );
-      localStorage.removeItem("token");
+      //localStorage.removeItem("token");
       localStorage.removeItem("id");
+      localStorage.removeItem("is_logged_in");
+
       this.props.history.push("/login");
     } catch (error) {
       alert("Something went wrong while logout");
