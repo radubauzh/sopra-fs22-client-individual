@@ -51,7 +51,7 @@ const Player = ({ user }) => {
         </Grid>
         <Grid item xs margin={1}>
           <Item sx={{ boxShadow: 0 }}>
-            Status: {user.status === "ONLINE" ? <Online /> : <Offline />}
+            Status: {user.status === true ? <Online /> : <Offline />}
           </Item>
         </Grid>
       </Grid>

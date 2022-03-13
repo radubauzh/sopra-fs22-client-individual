@@ -54,7 +54,7 @@ const Profile = ({ user }) => {
             </GlasBox>
             <GlasBox>
               <Item>
-                Status: {user.status === "ONLINE" ? <Online /> : <Offline />}
+                Status: {user.status === true ? <Online /> : <Offline />}
               </Item>
             </GlasBox>
             <GlasBox>
